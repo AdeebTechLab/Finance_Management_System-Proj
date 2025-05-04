@@ -1,0 +1,428 @@
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(21, 124, 235);
+  color: white;
+  padding: 16px 30px;
+  font-size: 18px;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.company-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+}
+
+.company-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.company-name {
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.slogan {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.navbar-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 6px;
+  width: 280px;
+  font-size: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+/* Chart Section */
+.chart-container {
+  flex: 1;
+  min-width: 400px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 450px;
+}
+
+.chart-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 15px;
+}
+
+/* Budget Section */
+.budget-section {
+  flex: 1;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Input Section */
+.input-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.input-field {
+  flex: 1;
+  min-width: 150px;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: border 0.3s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Buttons */
+.btn {
+  padding: 14px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 120px;
+  max-width: 270px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  background-color: #0069d9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.edit-btn {
+  color: #28a745;
+}
+
+.delete-btn {
+  color: #dc3545;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Budget List */
+.budget-list {
+  list-style: none;
+  padding: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.budget-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 25px;
+  border-bottom: 1px solid #eee;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.budget-item:last-child {
+  border-bottom: none;
+}
+
+.budget-item:hover {
+  background-color: #f8f9fa;
+}
+
+.budget-name {
+  font-weight: bold;
+  color: #333;
+  margin-right: 5px;
+}
+
+/* History */
+.history-title {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px 25px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+  margin: 0;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .container {
+    padding: 15px;
+  }
+
+  .chart-container,
+  .budget-section {
+    min-width: 350px;
+  }
+
+  .chart-container {
+    height: 400px;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .logo {
+    height: 50px;
+  }
+
+  .navbar-title {
+    font-size: 20px;
+  }
+
+  .search-bar {
+    width: 220px;
+    padding: 10px 14px;
+  }
+
+  .chart-container,
+  .budget-section {
+    min-width: 300px;
+  }
+
+  .input-container,
+  .budget-list {
+    padding: 20px;
+  }
+
+  .budget-item {
+    padding: 15px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .chart-container {
+    width: 100%;
+    height: 350px;
+    padding: 20px;
+  }
+
+  .budget-section {
+    width: 100%;
+  }
+
+  .chart-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+
+  .history-title {
+    font-size: 18px;
+    padding: 15px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .company-container {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navbar-title {
+    width: 100%;
+    text-align: center;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .input-container {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .input-field {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: none;
+  }
+
+  .budget-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .btn-group {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 5px;
+  }
+
+  .chart-container {
+    height: 300px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar {
+    padding: 12px;
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .company-name {
+    font-size: 18px;
+  }
+
+  .slogan {
+    font-size: 12px;
+  }
+
+  .chart-container {
+    height: 250px;
+    padding: 12px;
+  }
+
+  .chart-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .budget-item {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,281 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+/* Header */
+.header {
+  background-color: #007bff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 20px; /* Increased gap between elements */
+  max-width: 1400px; /* Fixed width */
+  margin: 0 auto; /* Center the header */
+  position: relative;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background-color: #007bff;
+  z-index: -1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-text {
+  font-size: 1.2rem;
+  padding: 0 10px; /* Add padding around welcome text */
+}
+
+.header span {
+  display: flex;
+  align-items: center;
+  margin: 0 10px; /* Add margin around spans */
+}
+
+.search-box {
+  padding: 10px 15px; /* Increased padding */
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  width: 250px;
+  background: white;
+  transition: all 0.3s ease;
+  margin-left: auto; /* Push to the right */
+}
+
+/* Main Layout */
+.main {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
+  max-width: 1400px; /* Match header width */
+  margin: 0 auto;
+}
+
+.permission {
+  width: 25%;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+  transition: all 0.3s ease;
+}
+
+/* User List Section */
+.userlist {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.userlist h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.userlist ul {
+  list-style-type: none;
+}
+
+.clickable-user-item {
+  cursor: pointer;
+}
+
+.userlist li {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.userlist li:hover {
+  background-color: #e9e9e9;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  flex-grow: 1;
+}
+
+.user-info p {
+  margin: 0;
+  padding: 5px 0;
+  line-height: 1.4;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-actions svg {
+  cursor: pointer;
+  color: #007bff;
+  transition: all 0.3s ease;
+}
+
+.user-actions svg:hover {
+  color: #0056b3;
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .main {
+    padding: 15px;
+  }
+
+  .permission {
+    width: 30%;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    padding: 15px 20px;
+  }
+
+  .welcome-text {
+    font-size: 1.1rem;
+  }
+
+  .search-box {
+    width: 200px;
+  }
+
+  .permission {
+    width: 35%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 12px 15px;
+    gap: 15px;
+  }
+
+  .welcome-text {
+    font-size: 1rem;
+  }
+
+  .search-box {
+    width: 180px;
+    padding: 8px;
+    font-size: 0.9rem;
+    margin-left: 0;
+  }
+
+  .main {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .permission {
+    width: 100%;
+    margin-bottom: 20px;
+    min-height: auto;
+    padding: 15px;
+  }
+
+  .userlist {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .userlist h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 15px;
+  }
+
+  .header span {
+    margin: 5px 0;
+  }
+
+  .welcome-text {
+    width: 100%;
+  }
+
+  .search-box {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .userlist li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .user-actions {
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 5px;
+    border-top: 1px solid #eee;
+  }
+
+  .userlist h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .main {
+    padding: 10px;
+  }
+
+  .userlist {
+    padding: 12px;
+  }
+
+  .userlist li {
+    padding: 12px;
+  }
+
+  .user-info p {
+    font-size: 0.9rem;
+  }
+}
+

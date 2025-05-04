@@ -1,0 +1,216 @@
+
+.signup-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+  }
+ 
+  .animated-typing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    gap: 10px; /* Space between static and animated text */
+    flex-wrap: wrap; /* Wrap on smaller screens */
+    margin-bottom: 10px;
+}
+
+.oswald {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.static-text {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.animated-typing span {
+  font-weight: bold;
+  color: #FFD700; /* Gold color for animated text (you can change) */
+}
+
+  .logo-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between logo and text */
+  }
+
+  .logo {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column; /* Stack Finova and slogan vertically */
+    justify-content: center;
+  }
+
+  .name {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: black; /* Adjust color based on background */
+    margin: 0; /* Remove margin to avoid extra spacing */
+  }
+
+  .slogan {
+    font-size: 1rem;
+    color: "#000000";
+    font-weight: 900;
+    margin: 0; /* Remove default margin */
+  }
+  .spaced-text {
+    letter-spacing: 1px;
+  }
+  /* Left Side (Blue) */
+  .signup-left {
+    flex: 1;
+    background-color: blue;
+    background-size: cover;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    text-align: center
+  }
+  
+  
+
+  
+  /* Right Side (White) */
+  .signup-right {
+    flex: 1;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .signup-right h2 {
+    font-size: 2rem;
+    color: #004aad;
+  }
+  
+  .signup-description {
+    font-size: 1rem;
+    color: gray;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Styling */
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 400px;
+  }
+  
+  .signup-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  /* Checkbox Alignment */
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between checkbox and text */
+    font-size: 0.9rem;
+    color: gray;
+    margin: 10px 0;
+  }
+  
+  .checkbox-container input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+
+  .checkbox-container label {
+    cursor: pointer;
+  }  
+  /* Button */
+  .signup-form button {
+    background-color:rgb(1, 71, 177);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+  }
+  
+  .signup-form button:hover {
+    background-color: #004aad;
+  }
+  
+  /* Login Link */
+  .login-link {
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .login-link a {
+    color: #0d6efd;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .signup-container {
+      flex-direction: column;
+    }
+  
+    .signup-left {
+      display: none; /* Hide blue side on small screens */
+    }
+  
+    .signup-right {
+      width: 100%;
+    }
+  }
+  
+
+ /* Footer */
+.footer {
+  background-color:rgb(1, 32, 73); /* Dark blue background */
+  color: white;
+  text-align: center;
+  padding: 8px 20px; /* Reduce height */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between; /* Align text in one line */
+  align-items: center; /* Vertically center content */
+}
+
+.footer-content {
+  display: flex;
+  gap: 15px; /* Space between copyright and info */
+  width: 100%;
+  justify-content: center;
+  opacity: 0.8; /* Center content */
+}

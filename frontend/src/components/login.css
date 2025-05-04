@@ -1,0 +1,180 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* Main Container */
+.login-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Left Side */
+.login-left {
+  flex: 1;
+  background-color: blue;
+  background-size: cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  text-align: center;
+}
+
+.company-name {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.login-left h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.login-left p {
+  font-size: 1rem;
+  max-width: 80%;
+  opacity: 0.8;
+}
+
+/* Right Side */
+.login-right {
+  flex: 1;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* Login Title */
+.login-title {
+  font-size: 2rem;
+  color: #004aad;
+  text-align: center;
+}
+
+/* Login Description */
+.login-description {
+  font-size: 1rem;
+  color: gray;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 400px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Options */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #555;
+}
+
+.options input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.options a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* Footer */
+.footer {
+  background-color:rgb(1, 32, 73); /* Dark blue background */
+  color: white;
+  text-align: center;
+  padding: 8px 20px; /* Reduce height */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between; /* Align text in one line */
+  align-items: center; /* Vertically center content */
+}
+
+.footer-content {
+  display: flex;
+  gap: 15px; /* Space between copyright and info */
+  width: 100%;
+  justify-content: center;
+  opacity: 0.8; /* Center content */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .login-left {
+    display: none;
+  }
+
+  .login-right {
+    width: 100%;
+    min-height: 100vh;
+    padding: 1.5rem;
+  }
+
+  form {
+    width: 100%;
+  }
+}

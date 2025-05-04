@@ -1,0 +1,523 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background: #f4f4f4;
+  overflow-x: hidden;
+}
+
+
+
+.card {
+  margin: 0; /* Removes external margin around the card */
+  padding: 0; /* Removes internal padding */
+  box-sizing: border-box; /* Keeps the dimensions neat */
+}
+
+.invest-card {
+  margin: 0;
+  padding: 0;
+  width: 100%; /* Ensures full width if required */
+}
+
+.card-header {
+  margin: 0; /* Gets rid of space around the header */
+  padding: 0;
+}
+
+.invest-list-wrapper {
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  margin: 0; /* Removes space at the root level */
+  padding: 0;
+}
+
+
+
+
+
+.dashboard-container {
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ======== Sidebar ======== */
+.side-bar {
+  width: 60px;
+  background: #ffffff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+/* Expand Sidebar */
+.side-bar.expanded {
+  width: 200px;
+  align-items: flex-start;
+}
+
+/* Toggle Button */
+.toggle-btn {
+  font-size: 20px;
+  padding: 15px;
+  cursor: pointer;
+  color: #333;
+  transition: 0.3s;
+}
+
+/* ======== Sidebar Menu ======== */
+.menu {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  margin-top: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  position: relative;
+}
+
+.menu-item:hover {
+  background: #f1f1f1;
+}
+
+/* Icons */
+.icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+/* Hide text in collapsed mode */
+.side-bar:not(.expanded) .menu-item span {
+  display: none;
+}
+
+/* Show tooltip on hover */
+.side-bar:not(.expanded) .menu-item:hover::after {
+  content: attr(title);
+  position: absolute;
+  left: 70px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-size: 14px;
+  z-index: 101;
+}
+
+/* Logout Button */
+.logout {
+  margin-top: auto;
+  color: red;
+}
+
+.logout:hover {
+  background: rgba(255, 0, 0, 0.1);
+}
+
+/* ======== Main Content ======== */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease-in-out;
+  margin-left: 60px;
+  padding: 0;
+  width: calc(100% - 60px);
+}
+
+/* Shift content when sidebar expands */
+.main-content.shifted {
+  margin-left: 200px;
+  width: calc(100% - 200px);
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+  padding: 15px;
+  background: rgb(20, 121, 236);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Welcome Text */
+.welcome-text {
+  width: 100%;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Search Box */
+.search-box {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 250px;
+  background: rgba(207, 207, 207, 0.73);
+}
+
+/* Cards Container */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 25px;
+  padding: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* General Card Styling */
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  height: 100%;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+/* Card Specific Styling */
+.balance-card {
+  background: linear-gradient(135deg, #0066ff, rgb(74, 127, 212));
+  grid-column: span 4;
+  min-height: 200px;
+}
+
+.income-card,
+.expenses-card {
+  background: white;
+  color: black;
+  grid-column: span 4;
+  min-height: 200px;
+}
+
+.invest-card {
+  background: white;
+  color: black;
+  grid-column: span 4;
+  grid-row: span 2;
+  min-height: 500px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.stats-card {
+  background: white;
+  color: black;
+  grid-column: span 8;
+  min-height: 300px;
+  overflow: hidden;
+}
+
+.savings-card {
+  background: white;
+  color: black;
+  grid-column: span 4;
+  min-height: 280px;
+}
+
+/* Card Headers */
+.card h2,
+.card h3 {
+  margin-top: 0;
+}
+
+.card-header {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.card-title {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Card Footer Inline */
+.card-footer-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+/* Status Badges */
+.status {
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.positive {
+  background: #d4f8d4;
+  color: green;
+}
+
+.negative {
+  background: #f8d4d4;
+  color: red;
+}
+
+/* Investment Table */
+.invest-list-wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  justify-content: flex_start;
+}
+
+.investment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  table-layout: fixed;
+}
+
+.investment-table th,
+.investment-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.investment-table th {
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.investment-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.no-investments {
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* Goal Table */
+.goal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.goal-table th,
+.goal-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.goal-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-align: center;
+}
+
+.goal-table td {
+  background-color: #fff;
+}
+
+/* Hide scrollbars but maintain functionality */
+.invest-card::-webkit-scrollbar,
+.stats-card::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  display: none;
+}
+
+/* ======== Responsive Design ======== */
+@media screen and (max-width: 1400px) {
+  .cards-container {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .balance-card {
+    grid-column: span 6;
+  }
+
+  .income-card,
+  .expenses-card {
+    grid-column: span 3;
+  }
+
+  .invest-card {
+    grid-column: span 6;
+  }
+
+  .stats-card {
+    grid-column: span 6;
+  }
+
+  .savings-card {
+    grid-column: span 6;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .cards-container {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .balance-card {
+    grid-column: span 6;
+  }
+
+  .income-card,
+  .expenses-card {
+    grid-column: span 3;
+  }
+
+  .invest-card {
+    grid-column: span 3;
+  }
+
+  .stats-card {
+    grid-column: span 3;
+  }
+
+  .savings-card {
+    grid-column: span 3;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .balance-card,
+  .income-card,
+  .expenses-card,
+  .invest-card,
+  .stats-card,
+  .savings-card {
+    grid-column: span 6;
+  }
+
+  .side-bar {
+    width: 60px;
+    z-index: 1000;
+  }
+
+  .side-bar.expanded {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+  }
+
+  
+  .main-content.shifted {
+    margin-left: 60px; /* Keep content visible on mobile when sidebar expands */
+    width: calc(100% - 60px);
+  }
+
+  .side-bar.expanded {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .search-box {
+    width: 100%;
+    margin-top: 10px;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cards-container {
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .toggle-btn {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .menu-item {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .welcome-text {
+    font-size: 16px;
+  }
+
+  .card h2 {
+    font-size: 1.5rem;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .investment-table th,
+  .investment-table td,
+  .goal-table th,
+  .goal-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+

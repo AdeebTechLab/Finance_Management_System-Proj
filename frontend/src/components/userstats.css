@@ -1,0 +1,313 @@
+.summary-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.summary-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.pdf-button {
+  display: block;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.pdf-button:hover {
+  background-color: #0056b3;
+}
+
+.summary-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.summary-item {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.summary-item span {
+  font-weight: bold;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.insights-list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+
+
+
+/* new */
+
+/* Base Styles */
+/* * {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: "Arial", sans-serif;
+background-color: #f5f5f5;
+color: #333;
+line-height: 1.6;
+}
+
+.summary-container {
+max-width: 800px;
+margin: 30px auto;
+padding: 20px;
+font-family: Arial, sans-serif;
+}
+
+.summary-title {
+text-align: center;
+font-size: 28px;
+font-weight: bold;
+margin-bottom: 25px;
+color: #2c3e50;
+position: relative;
+padding-bottom: 15px;
+}
+
+.summary-title::after {
+content: "";
+position: absolute;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+width: 100px;
+height: 3px;
+background: linear-gradient(to right, #3498db, #2980b9);
+border-radius: 3px;
+}
+
+.pdf-button {
+display: block;
+width: 100%;
+background-color: #3498db;
+color: white;
+padding: 14px;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+font-size: 16px;
+font-weight: bold;
+margin: 25px 0;
+transition: all 0.3s ease;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-button:hover {
+background-color: #2980b9;
+transform: translateY(-2px);
+box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.summary-card {
+background: white;
+padding: 30px;
+border-radius: 12px;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+transition: all 0.3s ease;
+}
+
+.section-title {
+font-size: 22px;
+font-weight: bold;
+margin: 25px 0 15px;
+color: #2c3e50;
+border-left: 4px solid #3498db;
+padding-left: 15px;
+}
+
+.section-title:first-of-type {
+margin-top: 0;
+}
+
+.summary-item {
+font-size: 17px;
+margin-bottom: 15px;
+padding: 12px 15px;
+border-radius: 8px;
+background-color: #f8f9fa;
+transition: all 0.3s ease;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.summary-item:hover {
+background-color: #e9ecef;
+transform: translateX(5px);
+}
+
+.summary-item span {
+font-weight: bold;
+font-size: 18px;
+}
+
+.positive {
+color: #27ae60;
+border-left: 3px solid #27ae60;
+}
+
+.negative {
+color: #e74c3c;
+border-left: 3px solid #e74c3c;
+}
+
+.insights-list {
+list-style-type: disc;
+padding-left: 20px;
+margin: 15px 0;
+}
+
+@media (max-width: 992px) {
+.summary-container {
+  max-width: 90%;
+}
+
+.summary-title {
+  font-size: 26px;
+}
+
+.summary-card {
+  padding: 25px;
+}
+}
+
+@media (max-width: 768px) {
+.summary-container {
+  padding: 15px;
+}
+
+.summary-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.pdf-button {
+  padding: 12px;
+  font-size: 15px;
+}
+
+.summary-card {
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 20px;
+  margin: 20px 0 12px;
+}
+
+.summary-item {
+  font-size: 16px;
+  padding: 10px 12px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.summary-item span {
+  margin-top: 5px;
+  font-size: 17px;
+}
+}
+
+@media (max-width: 576px) {
+.summary-container {
+  max-width: 100%;
+  padding: 10px;
+  margin: 15px auto;
+}
+
+.summary-title {
+  font-size: 22px;
+  padding-bottom: 10px;
+}
+
+.summary-title::after {
+  width: 80px;
+  height: 2px;
+}
+
+.pdf-button {
+  padding: 10px;
+  font-size: 14px;
+  margin: 15px 0;
+}
+
+.summary-card {
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.section-title {
+  font-size: 18px;
+  margin: 15px 0 10px;
+  padding-left: 10px;
+}
+
+.summary-item {
+  font-size: 15px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+}
+
+.summary-item span {
+  font-size: 16px;
+}
+}
+
+@media (max-width: 400px) {
+.summary-title {
+  font-size: 20px;
+}
+
+.summary-card {
+  padding: 12px;
+}
+
+.section-title {
+  font-size: 17px;
+}
+
+.summary-item {
+  font-size: 14px;
+}
+
+.summary-item span {
+  font-size: 15px;
+}
+}
+*/

@@ -1,0 +1,1 @@
+USERS_DATA_MONGOURI: "mongodb+srv://smartfinancemanager121:PFMS121@userinfo.fvllg.mongodb.net/?retryWrites=true&w=majority&appName=UserInfo"
