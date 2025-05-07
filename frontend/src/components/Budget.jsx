@@ -7,75 +7,67 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  CartesianGrid, 
+  CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
 import "./Budget.css";
 
-const budgetReducer = (state, action) => {
-  switch (action.type) {
-    case "ADD":
-      return [
-        {
-          id: Date.now(),
-          name: action.name,
-          amount: parseFloat(action.amount),
-        },
-        ...state,
-      ];
-    case "EDIT":
-      return state.map((budget) =>
-        budget.id === action.id
-          ? { ...budget, name: action.name, amount: parseFloat(action.amount) }
-          : budget
-      );
-    case "DELETE":
-      return state.filter((budget) => budget.id !== action.id);
-    default:
-      return state;
-  }
-};
-
 export default function BudgetManager() {
-  const [budgets, dispatch] = useReducer(budgetReducer, []);
+  const [budgetDataFromLocalStorage, setBudgetDataFromLocalStorage] = useState([]);
   const [history, setHistory] = useState([]);
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
-  const [search, setSearch] = useState("");
   const [editingId, setEditingId] = useState(null);
-  const [budgetDataFromLocalStorage, setBudgetDataFromLocalStorage] = useState(
-    []
-  );
 
-  // Fetch userHistory from localStorage and set budget data
   useEffect(() => {
     const userHistory = localStorage.getItem("userHistory");
     if (userHistory) {
       const parsedHistory = JSON.parse(userHistory);
-      if (parsedHistory && parsedHistory.budget) {
+      if (parsedHistory?.budget) {
         setBudgetDataFromLocalStorage(parsedHistory.budget);
       }
     }
   }, []);
-  const _history = JSON.parse(localStorage.getItem("userHistory"));
 
   const handleSubmit = async () => {
-    if (!name.trim() || !amount.trim()) return;
-  
+    if (!name.trim() || !String(amount).trim()) return;
+
     const user = localStorage.getItem("userEmail");
     if (!user) {
       alert("User is not logged in");
       return;
     }
     const userID = user.split("@")[0];
-  
+
+    if (editingId) {
+      const updatedBudgets = budgetDataFromLocalStorage.map((b) =>
+        b._id === editingId
+          ? { ...b, source: name, amount: parseFloat(amount) }
+          : b
+      );
+
+      setBudgetDataFromLocalStorage(updatedBudgets);
+
+      const _history = JSON.parse(localStorage.getItem("userHistory")) || {
+        budget: [],
+      };
+      _history.budget = updatedBudgets;
+      localStorage.setItem("userHistory", JSON.stringify(_history));
+
+      setEditingId(null);
+      setName("");
+      setAmount("");
+      return;
+    }
+
     const budgetData = {
+      _id: Date.now(), // Temporary ID for frontend
       user_id: userID,
       date: new Date().toISOString(),
       amount: parseFloat(amount),
       source: name,
     };
-  
+
     try {
       const response = await fetch("http://localhost:5001/api/budget", {
         method: "POST",
@@ -84,17 +76,18 @@ export default function BudgetManager() {
         },
         body: JSON.stringify(budgetData),
       });
-  
+
       const text = await response.text();
       const data = JSON.parse(text);
-      
+
       if (response.ok) {
-        // Update history and budget data state immediately
+        const updatedBudgets = [budgetData, ...budgetDataFromLocalStorage];
         setHistory((prev) => [budgetData, ...prev]);
-  
-        const updatedBudget = [budgetData, ...budgetDataFromLocalStorage];
-        setBudgetDataFromLocalStorage(updatedBudget); // Ensures re-render
-        _history.budget = updatedBudget;
+        setBudgetDataFromLocalStorage(updatedBudgets);
+
+        const _history =
+          JSON.parse(localStorage.getItem("userHistory")) || { budget: [] };
+        _history.budget = updatedBudgets;
         localStorage.setItem("userHistory", JSON.stringify(_history));
       } else {
         alert(data.message || "Failed to add budget");
@@ -103,61 +96,86 @@ export default function BudgetManager() {
       console.error("Error:", error);
       alert("An error occurred while adding budget");
     }
-  
-    setName(""); 
+
+    setName("");
     setAmount("");
   };
-  
+
   const handleEdit = (budget) => {
-    setName(budget.name);
+    setName(budget.source || budget.name || "");
     setAmount(budget.amount);
-    setEditingId(budget.id);
+    setEditingId(budget._id);
   };
 
-  const filteredBudgets = budgets.filter((budget) =>
-    budget.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const handleDelete = (id) => {
+    const updatedBudgets = budgetDataFromLocalStorage.filter(
+      (budget) => budget._id !== id
+    );
+    setBudgetDataFromLocalStorage(updatedBudgets);
 
-  // Chart data based on budget from local storage
+    const _history = JSON.parse(localStorage.getItem("userHistory")) || {
+      budget: [],
+    };
+    _history.budget = updatedBudgets;
+    localStorage.setItem("userHistory", JSON.stringify(_history));
+  };
+
   const chartData = budgetDataFromLocalStorage.map((budgetItem) => ({
     date: new Date(budgetItem.date).toLocaleDateString(),
     amount: budgetItem.amount,
   }));
 
   return (
-
-
-
-
     <div className="container">
       <nav className="navbar">
-       
-
-
-
-        <span> <BackButton/> </span>
+        <span>
+          <BackButton />
+        </span>
         <h1 className="navbar-title">Budget Manager</h1>
-        
       </nav>
-
-
-
-
-
 
       <div className="main-content">
         <div className="chart-container">
           <h2 className="chart-title">Budget Trends</h2>
           <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={chartData}>
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <CartesianGrid strokeDasharray="3 3" />
-              <Line type="monotone" dataKey="amount" stroke="#007bff" />
-            </LineChart>
-          </ResponsiveContainer>
+  <LineChart data={chartData}>
+    <XAxis
+      dataKey="date"
+      axisLine={false}
+      tickLine={false}
+      ticks={[new Date().toLocaleDateString()]}
+      tickFormatter={() => {
+        const now = new Date();
+        return now.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        });
+      }}
+      tick={{
+        fill: "#808080",
+        fontSize: 18,
+        fontWeight: "bold",
+        textAnchor: "middle",
+        letterSpacing: "1px",
+      }}
+      style={{
+        transform: "translateX(-50%)", // To center align the tick
+        left: "50%",
+        position: "absolute", 
+        bottom: -20,  // Adjust the vertical position if needed
+      }}
+      interval={0}
+    />
+    <YAxis />
+    <Tooltip />
+    <CartesianGrid strokeDasharray="3 3" />
+    <Line type="monotone" dataKey="amount" stroke="#007bff" />
+  </LineChart>
+</ResponsiveContainer>
+
         </div>
+
         <div className="budget-section">
           <div className="input-container">
             <input
@@ -177,14 +195,14 @@ export default function BudgetManager() {
               {editingId ? "Update" : "Add"}
             </button>
           </div>
+
           <ul className="budget-list">
             <h2 className="history-title">History</h2>
             {budgetDataFromLocalStorage.map((budget) => (
               <li key={budget._id} className="budget-item">
                 <div>
                   <span className="budget-name">{budget.source}</span> - PKR{" "}
-                  {budget.amount}
-                  (Added at {new Date(budget.date).toLocaleString()})
+                  {budget.amount} (Added at {new Date(budget.date).toLocaleString()})
                 </div>
                 <div className="btn-group">
                   <button
@@ -194,14 +212,14 @@ export default function BudgetManager() {
                     <Pencil size={18} />
                   </button>
                   <button
-                    onClick={() => dispatch({ type: "DELETE", id: budget._id })}
+                    onClick={() => handleDelete(budget._id)}
                     className="delete-btn"
                   >
                     <Trash size={18} />
                   </button>
                 </div>
               </li>
-            ))} 
+            ))}
           </ul>
         </div>
       </div>
