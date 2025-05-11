@@ -10,7 +10,7 @@ npm install
 npm start
 
 new terminal open karna ha 
-cd .\frontend\
+cd .\backend\
 npm install
 npm start
 

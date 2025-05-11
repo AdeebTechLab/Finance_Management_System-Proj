@@ -13,15 +13,33 @@ export default function InvestmentTracker() {
   const [returns, setReturns] = useState("")
   const [investmentDataFromLocalStorage, setInvestmentDataFromLocalStorage] = useState([])
 
+  
+
   useEffect(() => {
     const userHistory = localStorage.getItem("userHistory")
-    if (userHistory) {
+    if (!userHistory) {
+      console.warn("No userHistory in localStorage")
+      return
+    }
+  
+    try {
       const parsedHistory = JSON.parse(userHistory)
-      if (parsedHistory && parsedHistory.investments) {
-        setInvestmentDataFromLocalStorage(parsedHistory.investments)
-      }
+      console.log("parsedHistory", parsedHistory);
+      
+  
+      // Flatten all nested financeData.investments arrays into one array
+      const allInvestments = parsedHistory.investments
+        ?.map((entry) => entry.financeData?.investments || [])
+        .flat()
+  console.log("allInvestments", allInvestments);
+  
+      console.log("Extracted investments:", allInvestments)
+      setInvestmentDataFromLocalStorage(allInvestments || [])
+    } catch (error) {
+      console.error("Failed to parse userHistory:", error)
     }
   }, [])
+  
 
   // 📌 Function to add a new investment
   const addInvestment = async () => {
@@ -178,8 +196,8 @@ export default function InvestmentTracker() {
 
         {investmentDataFromLocalStorage.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-10 text-gray-500">
-            <svg
-              className="w-16 h-16 mb-4 text-gray-400"
+            {/* <svg
+              className="mb-4 text-gray-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -191,7 +209,7 @@ export default function InvestmentTracker() {
                 strokeWidth="2"
                 d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               ></path>
-            </svg>
+            </svg> */}
             <p className="text-lg">No investment history available.</p>
             <p className="text-sm mt-2">Start by adding your first investment above.</p>
           </div>
