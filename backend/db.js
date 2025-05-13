@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const authDB = mongoose.createConnection(
-    "mongodb+srv://smartfinancemanager121:PFMS121@userinfo.fvllg.mongodb.net/?retryWrites=true&w=majority&appName=UserInfo",
+    "mongodb://localhost:27017/authDB",
     { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
@@ -9,7 +9,7 @@ authDB.on("connected", () => console.log("authDB Connected successfully."));
 authDB.on("error", (err) => console.error("authDB Connection Error:", err));
 
 const financeDB = mongoose.createConnection(
-    "mongodb+srv://smartfinancemanager121:PFMS121@userinfo.fvllg.mongodb.net/?retryWrites=true&w=majority&appName=UserInfo",
+    "mongodb://localhost:27017/financeDB",
     { useNewUrlParser: true, useUnifiedTopology: true }
 );
 

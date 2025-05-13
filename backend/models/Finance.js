@@ -14,7 +14,7 @@ const financeSchema = new mongoose.Schema({
         reason: String  
     }],
     investments: [{
-            date: { type: Date},
+            // date: { type: Date},
             company: {type: String},
             amount: { type: Number},
             returns: {type: Number},
